@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -8,8 +9,8 @@ public class Team implements Serializable {
     private int id;
 
     private String title;
-    private Set<Member> members;
-    private Set<Project> projects;
+    private Set<Member> members = new HashSet<>();
+    private Set<Project> projects = new HashSet<>();
 
     public Team() {
     }

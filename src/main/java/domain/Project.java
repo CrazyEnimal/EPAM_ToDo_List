@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -10,8 +11,8 @@ public class Project implements Serializable {
     private Member creator;
     private String title;
     private Member supervisor;
-    private Set<Member> members;
-    private Set<Task> tasks;
+    private Set<Member> members = new HashSet<>();
+    private Set<Task> tasks = new HashSet<>();
 
     public Project() {
     }
