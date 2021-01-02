@@ -11,9 +11,9 @@ public class JSONSpacer {
     Task getTaskFromJSONString(String obj){
         Gson gson = new Gson();
         //todo: input checking
-        Task task = gson.fromJson(obj, Task.class);
-        return task;
+        return gson.fromJson(obj, Task.class);
     }
+
 
     String getJSONStringFromTask(Task task) {
         Gson gson = new Gson();

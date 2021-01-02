@@ -1,25 +1,31 @@
 package domain.task;
 
 import domain.Member;
+import domain.Project;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Objects;
 
 /**
  * @author Georgiy Minasian
  */
 public class Task {
+    public static Logger logger = LogManager.getLogger();
+
     private String title;
     private int id;
     private boolean isComplete = false;
     private Member creator;
     private Member executor;
-    private Status status = new Status(-1); //NPE protection - default notNull object
-
+    private Status status = new Status(-1, "Basic status", new Project()); //NPE protection - default notNull object
 
     //todo: Event event, Member followers, Message messages fields
     private String description = "";
     private Priority priority = Priority.NORMAL;
 
     public Task() {
+        logger.info("task created by default constructor");
     }
 
     public Task(String title, int id, String description, Priority priority) {
@@ -27,45 +33,29 @@ public class Task {
         this.id = id;
         this.description = description;
         this.priority = priority;
+        logger.info("task created by parametrized constructor with: \n"
+                + "title: " + title + "\n"
+                + "id: " + id + "\n"
+                + "description: " + description + "\n"
+                + "priority: " + priority + "\n"
+                + "status: " + status.getTitle()
+                );
     }
 
-    public Task addTask(String jsonString) {
+    public static Task addTask(String jsonString) {
         JSONSpacer js = new JSONSpacer();
-        Task inputTask = js.getTaskFromJSONString(jsonString);
-        Task outputTask = new Task();
-
-        outputTask.setCreator(inputTask.getCreator());
-        outputTask.setExecutor(inputTask.getExecutor());
-        outputTask.setTitle(inputTask.getTitle());
-        outputTask.setId(inputTask.getId());
-        outputTask.setComplete(inputTask.isComplete());
-
-        if (inputTask.getDescription().length() > 0) {
-            outputTask.setDescription(inputTask.getDescription());
-        }
-
-        if (inputTask.getStatusId() > 0) {
-            outputTask.setStatusId(inputTask.getStatusId());
-        }
-
-        //todo: event, followers and messages checking and setting
-
-        if (inputTask.getPriority() != Priority.NORMAL) {
-            outputTask.setPriority(inputTask.getPriority());
-        }
-
-
-
-        return outputTask;
+        Task task = js.getTaskFromJSONString(jsonString);
+        logger.info("Input task created from JSON string");
+        return task;
     }
 
-    //todo: task edit and task delete methods
+    //todo: task delete methods
 
     public String getTitle() {
         return title;
     }
 
-    private void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -73,7 +63,7 @@ public class Task {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -81,7 +71,7 @@ public class Task {
         return isComplete;
     }
 
-    private void setComplete(boolean complete) {
+    public void setComplete(boolean complete) {
         isComplete = complete;
     }
 
@@ -89,7 +79,7 @@ public class Task {
         return creator;
     }
 
-    private void setCreator(Member creator) {
+    public void setCreator(Member creator) {
         this.creator = creator;
     }
 
@@ -97,7 +87,7 @@ public class Task {
         return executor;
     }
 
-    private void setExecutor(Member executor) {
+    public void setExecutor(Member executor) {
         this.executor = executor;
     }
 
@@ -105,16 +95,16 @@ public class Task {
         return description;
     }
 
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public int getStatusId() {
-        return status.getId();
+    public Status getStatus() {
+        return status;
     }
 
-    private void setStatusId(int statusId) {
-        status.setId(statusId);
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     //todo: followers, event and messages setters and getters
@@ -123,7 +113,7 @@ public class Task {
         return priority;
     }
 
-    private void setPriority(Priority priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
@@ -150,7 +140,7 @@ public class Task {
                 "id: " + id + ", " + "\n" +
                 "isComplete: " + isComplete + ", " + "\n" +
                 "creator: " + creator + ", " + "\n" +
-                "executor: " + executor + "\n" +
+                "executor: " + executor + ", " + "\n" +
                 "status id: " + status.getId() + "\n";
     }
 }

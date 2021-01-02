@@ -1,6 +1,5 @@
 package domain.task;
 
-import domain.Member;
 import domain.Project;
 
 /**
@@ -8,17 +7,20 @@ import domain.Project;
  */
 public class Status {
     int id;
-    Member creator;
-    Project[] projects;
     String title;
-    Member executor;
+    Project project;
 
     public Status() {
     }
 
     public Status(int id) {
         this.id = id;
+    }
 
+    public Status(int id, String title, Project project) {
+        this.id = id;
+        this.title = title;
+        this.project = project;
     }
 
     public int getId() {
@@ -29,4 +31,11 @@ public class Status {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
