@@ -2,6 +2,7 @@ package Event;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.Objects;
 
 public class EventTypeObject implements EventTypeInterface {
 
@@ -29,6 +30,9 @@ public class EventTypeObject implements EventTypeInterface {
 
     public Instant getCreatingDate () {
         return creatingDate;
+    }
+
+    public EventTypeObject () {
     }
 
     public EventTypeObject (Instant creatingDate) {
@@ -61,9 +65,33 @@ public class EventTypeObject implements EventTypeInterface {
         this.repeatDate = repeatDate;
     }
 
+    //TODO choose that it`s return?
     @Override
-    public Date getDate () {
+    public Instant getDate () {
         return null;
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EventTypeObject that = (EventTypeObject) o;
+        return Objects.equals(startDate, that.startDate) && Objects.equals(dueDate, that.dueDate) && Objects.equals(creatingDate, that.creatingDate) && Objects.equals(repeatDate, that.repeatDate);
+    }
+
+    @Override
+    public int hashCode () {
+        return Objects.hash(startDate, dueDate, creatingDate, repeatDate);
+    }
+
+    @Override
+    public String toString () {
+        return "EventTypeObject{" +
+                "startDate=" + startDate +
+                ", dueDate=" + dueDate +
+                ", creatingDate=" + creatingDate +
+                ", repeatDate=" + repeatDate +
+                '}';
     }
 
     public static class RepeatDate {
@@ -75,7 +103,7 @@ public class EventTypeObject implements EventTypeInterface {
 
         private enum Period {
 
-            DAY("DAY"), WEAK("WEAK"), MONTHS("MONTHS"), CVARTER("CVARTER"), YEAR("YEAR");
+            DAY("DAY"), WEEK("WEEK"), MONTHS("MONTHS"), QUARTER("QUARTER"), YEAR("YEAR");
             private String day;
 
             Period (String day) {

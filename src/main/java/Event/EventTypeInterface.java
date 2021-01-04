@@ -1,9 +1,10 @@
 package Event;
 
+import java.time.Instant;
 import java.util.Date;
 
 public interface EventTypeInterface {
-    Date getDate ();
+    Instant getDate ();
 }
 //TODO:
 ////интерфейс
