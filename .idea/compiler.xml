@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eToDo" />
+        <module name="EPAM_ToDo_List" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EPAM_ToDo_List" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
