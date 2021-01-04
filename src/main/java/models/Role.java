@@ -16,15 +16,15 @@ public class Role {
 
     public Role(){}
 
-    public int getId() {
+    private int getId() {
         return id;
     }
 
-    public String getTitle() {
+    private String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    private void setTitle(String title) {
         this.title = title;
     }
 

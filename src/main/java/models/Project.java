@@ -25,8 +25,6 @@ public class Project {
         this.title = title;
     }
 
-
-
     public int getId() {
         return id;
     }

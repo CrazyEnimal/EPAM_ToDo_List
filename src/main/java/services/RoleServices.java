@@ -16,15 +16,15 @@ public class RoleServices {
         return roleDAO.findById(id);
     }
 
-    public void saveMember(Role role){
+    public void saveRole(Role role){
         roleDAO.save(role);
     }
 
-    public void updateMember(Role role){
+    public void updateRole(Role role){
         roleDAO.update(role);
     }
 
-    public void deleteMember(Role role){
+    public void deleteRole(Role role){
         roleDAO.delete(role);
     }
 

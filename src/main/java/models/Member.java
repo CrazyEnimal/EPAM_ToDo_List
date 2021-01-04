@@ -25,8 +25,9 @@ public class Member {
     @Column(name = "Password")
     private String password;
 
-    @Column(name = "Role")
-    private int roleId;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Role")
+    private Role role;
 
     public Member() {}
 
@@ -36,59 +37,59 @@ public class Member {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.roleId = role.getId();
+        this.role = role;
     }
 
-    public int getId() {
+    private int getId() {
         return id;
     }
 
-    public String getUserName() {
+    private String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    private void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getFirstName() {
+    private String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    private void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    private String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    private void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
+    private String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
-    public int getRole() {
-        return roleId;
+    private Role getRole() {
+        return role;
     }
 
-    public void setRole(Role role) {
-        this.roleId = role.getId();
+    private void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -116,7 +117,7 @@ public class Member {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + roleId + '\'' +
+                ", role='" + role.toString() + '\'' +
                 '}';
     }
 }

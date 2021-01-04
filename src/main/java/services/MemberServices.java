@@ -5,11 +5,11 @@ import models.Member;
 
 import java.util.List;
 
-public class MemberService {
+public class MemberServices {
 
     private MemberDao memberDao = new MemberDao();
 
-    public MemberService() {
+    public MemberServices() {
     }
 
     public Member findMember(int id) {
