@@ -24,11 +24,11 @@ public class Main {
 
 
         // List Roles
-//        RoleServices roleService = new RoleServices();
-//        List<Role> roles = roleService.findAllRoles();
-//        for (Role role: roles
-//             ) {
-//            System.out.println(role.toString());
-//        }
+        RoleServices roleService = new RoleServices();
+        List<Role> roles = roleService.findAllRoles();
+        for (Role role: roles
+             ) {
+            System.out.println(role.toString());
+        }
     }
 }
