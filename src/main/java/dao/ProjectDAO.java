@@ -1,48 +1,44 @@
 package dao;
 
-import models.Role;
+import models.Project;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-public class RoleDAO {
+public class ProjectDAO {
 
-    public Role findById(int id){
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Role.class, id);
+    public Project findById(int id){
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Project.class, id);
     }
 
-    public Role findByTitle(String title){
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Role.class, title);
-    }
-
-    public void save(Role role) {
+    public void save(Project project) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(role);
+        session.save(project);
         tx1.commit();
         session.close();
     }
 
-    public void update(Role role) {
+    public void update(Project project) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(role);
+        session.update(project);
         tx1.commit();
         session.close();
     }
 
-    public void delete(Role role) {
+    public void delete(Project project) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(role);
+        session.delete(project);
         tx1.commit();
         session.close();
     }
 
-    public List<Role> findAll() {
-        List<Role> roles = (List<Role>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Role").list();
-        return roles;
+    public List<Project> findAll() {
+        List<Project> projects = (List<Project>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Project").list();
+        return projects;
     }
 }

@@ -1,48 +1,44 @@
 package dao;
 
-import models.Role;
+import models.ProjectFolower;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-public class RoleDAO {
+public class ProjectFolowerDAO {
 
-    public Role findById(int id){
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Role.class, id);
+    public ProjectFolower findById(int id){
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(ProjectFolower.class, id);
     }
 
-    public Role findByTitle(String title){
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Role.class, title);
-    }
-
-    public void save(Role role) {
+    public void save(ProjectFolower projectFolower) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(role);
+        session.save(projectFolower);
         tx1.commit();
         session.close();
     }
 
-    public void update(Role role) {
+    public void update(ProjectFolower projectFolower) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(role);
+        session.update(projectFolower);
         tx1.commit();
         session.close();
     }
 
-    public void delete(Role role) {
+    public void delete(ProjectFolower projectFolower) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(role);
+        session.delete(projectFolower);
         tx1.commit();
         session.close();
     }
 
-    public List<Role> findAll() {
-        List<Role> roles = (List<Role>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Role").list();
-        return roles;
+    public List<ProjectFolower> findAll() {
+        List<ProjectFolower> projectFolowers = (List<ProjectFolower>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From ProjectFolower").list();
+        return projectFolowers;
     }
 }
