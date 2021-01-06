@@ -4,54 +4,54 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "projects_tasks")
-public class ProjectTask {
+@Table(name = "tasks_followers")
+public class TaskFollower {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProjectId")
-    private Project project;
-
-    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TaskId")
     private Task task;
 
-    public ProjectTask() {
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MemberId")
+    private Member member;
 
+    public TaskFollower() {
     }
 
-    public ProjectTask(Project project, Task task) {
-        this.project = project;
+    public TaskFollower(Task task, Member member) {
         this.task = task;
+        this.member = member;
     }
 
     public int getId() {
         return id;
     }
 
-    private Project getProject() {
-        return project;
-    }
-
-    private void setProject(Project project) {
-        this.project = project;
-    }
-
-    private Task getTask() {
+    public Task getTask() {
         return task;
     }
 
-    private void setTask(Task task) {
+    public void setTask(Task task) {
         this.task = task;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProjectTask that = (ProjectTask) o;
+        TaskFollower that = (TaskFollower) o;
         return id == that.id;
     }
 
@@ -62,10 +62,10 @@ public class ProjectTask {
 
     @Override
     public String toString() {
-        return "ProjectTask{" +
+        return "TaskFollower{" +
                 "id=" + id +
-                ", project=" + project.toString() +
                 ", task=" + task.toString() +
+                ", member=" + member.toString() +
                 '}';
     }
 }

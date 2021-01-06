@@ -22,10 +22,10 @@ public class Project {
     @Column(name = "Title")
     private String title;
 
-    @OneToMany(mappedBy = "project_folowers", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProjectFolower> projectFolowers;
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProjectFollower> projectFollowers;
 
-    @OneToMany(mappedBy = "projects_tasks", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProjectTask> projectTasks;
 
     public Project(){}

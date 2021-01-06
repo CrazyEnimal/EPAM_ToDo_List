@@ -1,57 +1,58 @@
 package models;
 
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "projects_tasks")
-public class ProjectTask {
+@Table(name = "teams_projects")
+public class TeamProject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TeamId")
+    private Team team;
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ProjectId")
     private Project project;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TaskId")
-    private Task task;
-
-    public ProjectTask() {
-
+    public TeamProject() {
     }
 
-    public ProjectTask(Project project, Task task) {
+    public TeamProject(Team team, Project project) {
+        this.team = team;
         this.project = project;
-        this.task = task;
     }
 
     public int getId() {
         return id;
     }
 
-    private Project getProject() {
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public Project getProject() {
         return project;
     }
 
-    private void setProject(Project project) {
+    public void setProject(Project project) {
         this.project = project;
-    }
-
-    private Task getTask() {
-        return task;
-    }
-
-    private void setTask(Task task) {
-        this.task = task;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProjectTask that = (ProjectTask) o;
+        TeamProject that = (TeamProject) o;
         return id == that.id;
     }
 
@@ -62,10 +63,10 @@ public class ProjectTask {
 
     @Override
     public String toString() {
-        return "ProjectTask{" +
+        return "TeamProject{" +
                 "id=" + id +
+                ", team=" + team.toString() +
                 ", project=" + project.toString() +
-                ", task=" + task.toString() +
                 '}';
     }
 }

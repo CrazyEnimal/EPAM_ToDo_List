@@ -1,13 +1,13 @@
 package services;
 
-import dao.MemberDao;
+import dao.MemberDAO;
 import models.Member;
 
 import java.util.List;
 
 public class MemberServices {
 
-    private MemberDao memberDao = new MemberDao();
+    private MemberDAO memberDao = new MemberDAO();
 
     public MemberServices() {
     }

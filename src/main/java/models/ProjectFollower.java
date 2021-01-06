@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "projects_folowers")
-public class ProjectFolower {
+@Table(name = "projects_followers")
+public class ProjectFollower {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class ProjectFolower {
     @JoinColumn(name = "MemberId")
     private Member member;
 
-    public ProjectFolower() {
+    public ProjectFollower() {
     }
 
-    public ProjectFolower(Project project, Member member) {
+    public ProjectFollower(Project project, Member member) {
         this.project = project;
         this.member = member;
     }
@@ -51,7 +51,7 @@ public class ProjectFolower {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProjectFolower that = (ProjectFolower) o;
+        ProjectFollower that = (ProjectFollower) o;
         return id == that.id;
     }
 
@@ -62,7 +62,7 @@ public class ProjectFolower {
 
     @Override
     public String toString() {
-        return "ProjectFolower{" +
+        return "ProjectFollower{" +
                 "id=" + id +
                 ", project=" + project.toString() +
                 ", member=" + member.toString() +

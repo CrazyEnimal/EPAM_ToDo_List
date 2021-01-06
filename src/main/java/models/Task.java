@@ -29,10 +29,10 @@ public class Task {
     @Column(name = "IsComplete")
     private boolean isComplete;
 
-    @OneToMany(mappedBy = "task_folowers", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TaskFolower> taskFolowers;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TaskFollower> taskFollowers;
 
-    @OneToMany(mappedBy = "task_messages", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TaskMessage> taskMessages;
 
     public Task() {
@@ -65,7 +65,7 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", isComplete=" + isComplete +
-                ", taskFolowers=" + taskFolowers.toString() +
+                ", taskFollowers=" + taskFollowers.toString() +
                 ", taskMessages=" + taskMessages.toString() +
                 '}';
     }

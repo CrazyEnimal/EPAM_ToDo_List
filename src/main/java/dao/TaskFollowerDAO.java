@@ -1,44 +1,43 @@
 package dao;
 
-import models.Member;
+import models.TaskFollower;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-public class MemberDao {
-
-    public Member findById(int id){
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Member.class, id);
+public class TaskFollowerDAO {
+    public TaskFollower findById(int id){
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(TaskFollower.class, id);
     }
 
-    public void save(Member member) {
+    public void save(TaskFollower taskFollower) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(member);
+        session.save(taskFollower);
         tx1.commit();
         session.close();
     }
 
-    public void update(Member member) {
+    public void update(TaskFollower taskFollower) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(member);
+        session.update(taskFollower);
         tx1.commit();
         session.close();
     }
 
-    public void delete(Member member) {
+    public void delete(TaskFollower taskFollower) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(member);
+        session.delete(taskFollower);
         tx1.commit();
         session.close();
     }
 
-    public List<Member> findAll() {
-        List<Member> members = (List<Member>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Member").list();
-        return members;
+    public List<TaskFollower> findAll() {
+        List<TaskFollower> taskFollowers = (List<TaskFollower>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From TaskFollower").list();
+        return taskFollowers;
     }
 }
