@@ -4,59 +4,84 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
-public class Event implements EventTypeInterface{
+public class Event implements EventTypeInterface {
     private int id;
-    EventTypeObject eventTypeObject;
+    //    EventTypeObject eventTypeObject;
+    private Instant date;
+    private String type;
 
-    public int getId () {
-        return id;
+
+//    public EventTypeObject getEventTypeObject() {
+//        return eventTypeObject;
+//    }
+
+//    public void setEventTypeObject(EventTypeObject eventTypeObject) {
+//        this.eventTypeObject = eventTypeObject;
+//    }
+
+    public Event() {
     }
 
-    public void setId (int id) {
+    public Event(int id, Instant date, String type) {
         this.id = id;
+        this.date = date;
+        this.type = type;
     }
 
-    public EventTypeObject getEventTypeObject () {
-        return eventTypeObject;
-    }
-
-    public void setEventTypeObject (EventTypeObject eventTypeObject) {
-        this.eventTypeObject = eventTypeObject;
-    }
-
-    public Event () {
-    }
-
-    public Event (int id, EventTypeObject eventTypeObject) {
-        this.id = id;
-        this.eventTypeObject = eventTypeObject;
-    }
-//TODO choose that it`s return?
-    @Override
-    public Instant getDate () {
-        return null;
-    }
 
     @Override
-    public boolean equals (Object o) {
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", Date=" + date +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return id == event.id && Objects.equals(eventTypeObject, event.eventTypeObject);
+        return id == event.id && Objects.equals(date, event.date) && Objects.equals(type, event.type);
     }
 
     @Override
-    public int hashCode () {
-        return Objects.hash(id, eventTypeObject);
+    public int hashCode() {
+        return Objects.hash(id, date, type);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
-    public String toString () {
-        return "Event{" +
-                "id=" + id +
-                ", eventTypeObject=" + eventTypeObject +
-                '}';
+    public Instant getDate() {
+        return date;
     }
+
+    public void setDate(Instant date) {
+        this.date = date;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+//TODO choose that it`s return?
+//    @Override
+//    public Instant getDate() {
+//        return null;
+//    }
+//
 }
 
 
