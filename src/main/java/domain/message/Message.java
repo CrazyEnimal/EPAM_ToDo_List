@@ -2,17 +2,32 @@ package domain.message;
 
 import domain.Member;
 
+import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
 
+@Entity
+@Table(name = "messages")
 public class Message {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int messageID;
-//    private int messageCreatorID;
+
+    // private int messageCreatorID;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CreatorID")
+    // Shouldnt we put member's ID here instead of the whole Member instance?
     private Member messageCreatorMember;
+
+    @Column(name = "Date")
     private Instant date;
+
+    @Column(name = "Text")
     private String messageText;
+
+    @Column(name = "Type")
     private String messageType;
 
 
@@ -23,7 +38,6 @@ public class Message {
         this.messageType = messageType;
     }
     public Message() {
-
     }
 
     public int getMessageID() {
@@ -90,4 +104,3 @@ public class Message {
                "Message: " + this.messageText;
     }
 }
-
