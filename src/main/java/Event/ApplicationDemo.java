@@ -10,41 +10,27 @@ public class ApplicationDemo {
 
     public static void main(String[] args) {
 
-        SessionFactory factory = null;
 
-        try {
+        EventService eventService = new EventService();
+        final Event event = new Event(1, Instant.now(), "text");
+        eventService.create(event);
+        final Event event2 = new Event(2, Instant.now(), "text2");
+        eventService.create(event2);
 
-            factory = new Configuration().configure().buildSessionFactory();
-            DAO<Event, Integer> eventDAO = new EventDAO(factory);
+        final Event result = eventService.read(1);
+        System.out.println("Created : " + result);
+        System.out.println();
 
-            final Event event = new Event(1, Instant.now(), "text");
-//            final Event event = new Event();
-//            event.setId(1);
-//            event.setDate(null);
-//            event.setType("testType");
-//            eventDAO.create(event);
-            eventDAO.create(event);
-            final Event event2 = new Event(2, Instant.now(), "text");
-            eventDAO.create(event);
+        result.setType("54321");
+        eventService.update(result);
 
-            final Event result = eventDAO.read(1);
-            System.out.println("Created : " + result);
-            System.out.println();
+        final Event update = eventService.read(1);
+        System.out.println("Updated : " + update);
+        System.out.println();
 
-            result.setType("54321");
-            eventDAO.update(result);
+//          eventDAO.delete(new Event(1, Instant.now(), "54321"));
+        eventService.delete(update);
+        System.out.println("Deleted(empty obj) : " + eventService.read(1));
 
-            final Event update = eventDAO.read(1);
-            System.out.println("Updated : " + update);
-            System.out.println();
-
-//            eventDAO.delete(new Event(1, Instant.now(), "54321"));
-            eventDAO.delete(update);
-            System.out.println("Deleted(empty obj) : " + eventDAO.read(1));
-        } finally {
-            if (factory != null) {
-                factory.close();
-            }
-        }
     }
 }

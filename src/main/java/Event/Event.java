@@ -1,13 +1,21 @@
 package Event;
 
+
+import javax.persistence.*;
+
 import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
-public class Event implements EventTypeInterface {
+@Entity
+@Table(name = "events")
+public class Event {
+    @Id
     private int id;
     //    EventTypeObject eventTypeObject;
+    @Column(name = "Date")
     private Instant date;
+    @Column(name = "Type")
     private String type;
 
 
@@ -59,7 +67,7 @@ public class Event implements EventTypeInterface {
         this.id = id;
     }
 
-    @Override
+
     public Instant getDate() {
         return date;
     }
@@ -74,29 +82,7 @@ public class Event implements EventTypeInterface {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-//TODO choose that it`s return?
-//    @Override
-//    public Instant getDate() {
-//        return null;
-//    }
-//
-}
-
-
-//TODO
-
-////просто класс
-//    /*
-//        Собитие, как сообщалось ранее описывается интерфейсом.
-//    */
-//    "event" : {
-//        *"id" : Int,
-//        "type" : eventTypeobject,
-//    },
-// решить что будет тут возвр гет дейт
-//
+    }}
 
 
 
