@@ -10,7 +10,6 @@ public class JSONSpacer {
 
     Task getTaskFromJSONString(String obj){
         Gson gson = new Gson();
-        //todo: input checking
         return gson.fromJson(obj, Task.class);
     }
 
