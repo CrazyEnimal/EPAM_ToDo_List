@@ -10,12 +10,12 @@ public class ProjectTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProjectId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TaskId")
+    @JoinColumn(name = "task_id")
     private Task task;
 
     public ProjectTask() {
@@ -31,19 +31,19 @@ public class ProjectTask {
         return id;
     }
 
-    private Project getProject() {
+    public Project getProject() {
         return project;
     }
 
-    private void setProject(Project project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 
-    private Task getTask() {
+    public Task getTask() {
         return task;
     }
 
-    private void setTask(Task task) {
+    public void setTask(Task task) {
         this.task = task;
     }
 

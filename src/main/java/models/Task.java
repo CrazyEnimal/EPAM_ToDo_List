@@ -13,20 +13,20 @@ public class Task {
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CreatorId")
+    @JoinColumn(name = "creator_id")
     private Member creator;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "StatusId")
+    @JoinColumn(name = "status_id")
     private Status status;
 
-    @Column(name = "Title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "IsComplete")
+    @Column(name = "is_complete")
     private boolean isComplete;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -11,12 +11,12 @@ public class ProjectFollower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProjectId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MemberId")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     public ProjectFollower() {
@@ -31,19 +31,19 @@ public class ProjectFollower {
         return id;
     }
 
-    private Project getProject() {
+    public Project getProject() {
         return project;
     }
 
-    private void setProject(Project project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 
-    private Member getMember() {
+    public Member getMember() {
         return member;
     }
 
-    private void setMember(Member member) {
+    public void setMember(Member member) {
         this.member = member;
     }
 

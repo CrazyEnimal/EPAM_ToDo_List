@@ -12,12 +12,12 @@ public class TeamProject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TeamId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProjectId")
+    @JoinColumn(name = "project_id")
     private Project project;
 
     public TeamProject() {

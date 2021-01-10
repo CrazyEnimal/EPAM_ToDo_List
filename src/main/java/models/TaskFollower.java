@@ -11,12 +11,12 @@ public class TaskFollower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TaskId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id")
     private Task task;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MemberId")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     public TaskFollower() {

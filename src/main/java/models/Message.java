@@ -14,16 +14,16 @@ public class Message {
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CreatorId")
+    @JoinColumn(name = "creator_id")
     private Member creator;
 
-    @Column(name = "Date")
+    @Column(name = "date")
     private Date date;
 
-    @Column(name = "Text")
+    @Column(name = "text")
     private String text;
 
-    @Column(name = "Type")
+    @Column(name = "type")
     private String type;
 
     public Message() {

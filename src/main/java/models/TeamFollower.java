@@ -10,12 +10,12 @@ public class TeamFollower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TeamId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MemberId")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     public TeamFollower() {

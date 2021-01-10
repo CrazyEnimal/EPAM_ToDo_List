@@ -12,11 +12,11 @@ public class Project {
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CreatorId")
+    @JoinColumn(name = "creator_id")
     private Member creator;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SupervisorId")
+    @JoinColumn(name = "supervisor_id")
     private Member supervisor;
 
     @Column(name = "Title")
@@ -39,19 +39,19 @@ public class Project {
         return id;
     }
 
-    private Member getCreator() {
+    public Member getCreator() {
         return creator;
     }
 
-    private void setCreator(Member creator) {
+    public void setCreator(Member creator) {
         this.creator = creator;
     }
 
-    private Member getSupervisor() {
+    public Member getSupervisor() {
         return supervisor;
     }
 
-    private void setSupervisor(Member supervisor) {
+    public void setSupervisor(Member supervisor) {
         this.supervisor = supervisor;
     }
 

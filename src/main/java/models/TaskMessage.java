@@ -12,12 +12,12 @@ public class TaskMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TaskId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id")
     private Task task;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MessageId")
+    @JoinColumn(name = "message_id")
     private Message message;
 
     public int getId() {

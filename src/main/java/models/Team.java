@@ -13,14 +13,14 @@ public class Team {
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CreatorId")
+    @JoinColumn(name = "creator_id")
     private Member creator;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SupervisorId")
+    @JoinColumn(name = "supervisor_id")
     private Member supervisor;
 
-    @Column(name = "Title")
+    @Column(name = "title")
     private String title;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)

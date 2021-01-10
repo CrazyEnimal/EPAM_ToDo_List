@@ -11,10 +11,10 @@ public class Status {
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CreatorId")
+    @JoinColumn(name = "creator_id")
     private Member creator;
 
-    @Column(name = "Title")
+    @Column(name = "title")
     private String title;
 
     public Status() {
