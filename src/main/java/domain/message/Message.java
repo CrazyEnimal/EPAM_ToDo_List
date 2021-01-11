@@ -17,19 +17,18 @@ public class Message {
     // private int messageCreatorID;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CreatorID")
+    @JoinColumn(name = "creator_id")
     // Shouldnt we put member's ID here instead of the whole Member instance?
     private Member messageCreatorMember;
 
-    @Column(name = "Date")
+    @Column(name = "date")
     private Instant date;
 
-    @Column(name = "Text")
-    private String messageText;
-
-    @Column(name = "Type")
+    @Column(name = "type")
     private String messageType;
 
+    @Column(name = "text")
+    private String messageText;
 
     public Message(Member messageCreatorMember, String messageText, String messageType) {
 
