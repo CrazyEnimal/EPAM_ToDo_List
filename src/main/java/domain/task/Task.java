@@ -5,37 +5,56 @@ import domain.Project;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * @author Georgiy Minasian
  */
+@Entity
+@Table(name = "Tasks")
 public class Task {
     public static Logger logger = LogManager.getLogger();
 
-    private String title;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "Title")
+    private String title;
+
+    @Column(name = "IsComplete")
     private boolean isComplete = false;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CreatorId")
     private Member creator;
-    private Member executor;
-    private Status status = new Status(-1, "Basic status", new Project()); //NPE protection - default notNull object
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "StatusId")
+    private Status status;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ExecutorId")
+    private Member executor; //no executor in database
 
     //todo: Event event, Member followers, Message messages fields
+    @Column(name = "Description")
     private String description = "";
-    private Priority priority = Priority.NORMAL;
+
+    @Column(name = "Priority")
+    private Priority priority = Priority.NORMAL; //no priority in database
 
     public Task() {
         logger.info("task created by default constructor");
     }
 
-    public Task(String title, int id, String description, Priority priority) {
+    public Task(String title, String description, Priority priority) {
         this.title = title;
-        this.id = id;
         this.description = description;
         this.priority = priority;
         logger.info("task created by parametrized constructor with: \n"
                 + "title: " + title + "\n"
-                + "id: " + id + "\n"
                 + "description: " + description + "\n"
                 + "priority: " + priority + "\n"
                 + "status: " + status.getTitle()
@@ -61,10 +80,6 @@ public class Task {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public boolean isComplete() {

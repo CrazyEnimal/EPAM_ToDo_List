@@ -12,41 +12,41 @@ public class EventTypeObject implements EventTypeInterface {
     private RepeatDate repeatDate;
 
 
-    public Instant getStartDate () {
+    public Instant getStartDate() {
         return startDate;
     }
 
-    public void setStartDate (Instant startDate) {
+    public void setStartDate(Instant startDate) {
         this.startDate = startDate;
     }
 
-    public Instant getDueDate () {
+    public Instant getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate (Instant dueDate) {
+    public void setDueDate(Instant dueDate) {
         this.dueDate = dueDate;
     }
 
-    public Instant getCreatingDate () {
+    public Instant getCreatingDate() {
         return creatingDate;
     }
 
-    public EventTypeObject () {
+    public EventTypeObject() {
     }
 
-    public EventTypeObject (Instant creatingDate) {
+    public EventTypeObject(Instant creatingDate) {
         this.creatingDate = creatingDate;
         this.repeatDate = null;
     }
 
-    public EventTypeObject (Instant startDate, Instant creatingDate) {
+    public EventTypeObject(Instant startDate, Instant creatingDate) {
         this(creatingDate);
         this.startDate = startDate;
         this.repeatDate = null;
     }
 
-    public EventTypeObject (Instant startDate, Instant dueDate, Instant creatingDate) {
+    public EventTypeObject(Instant startDate, Instant dueDate, Instant creatingDate) {
         this(startDate, creatingDate);
         this.dueDate = dueDate;
         this.repeatDate = null;
@@ -55,24 +55,24 @@ public class EventTypeObject implements EventTypeInterface {
     //TODO:
     // choose correct/best constructor
 
-    public EventTypeObject (Instant startDate, Instant dueDate, Instant creatingDate, int count, String period) {
+    public EventTypeObject(Instant startDate, Instant dueDate, Instant creatingDate, int count, RepeatDate.Period period) {
         this(startDate, creatingDate, dueDate);
-        this.repeatDate = new RepeatDate(count, RepeatDate.Period.valueOf(period));
+        this.repeatDate = new RepeatDate(count, period);
     }
 
-    public EventTypeObject (Instant startDate, Instant dueDate, Instant creatingDate, RepeatDate repeatDate) {
+    public EventTypeObject(Instant startDate, Instant dueDate, Instant creatingDate, RepeatDate repeatDate) {
         this(startDate, creatingDate, dueDate);
         this.repeatDate = repeatDate;
     }
 
     //TODO choose that it`s return?
     @Override
-    public Instant getDate () {
+    public Instant getDate() {
         return null;
     }
 
     @Override
-    public boolean equals (Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventTypeObject that = (EventTypeObject) o;
@@ -80,12 +80,12 @@ public class EventTypeObject implements EventTypeInterface {
     }
 
     @Override
-    public int hashCode () {
+    public int hashCode() {
         return Objects.hash(startDate, dueDate, creatingDate, repeatDate);
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         return "EventTypeObject{" +
                 "startDate=" + startDate +
                 ", dueDate=" + dueDate +
@@ -95,24 +95,32 @@ public class EventTypeObject implements EventTypeInterface {
     }
 
     public static class RepeatDate {
-        public RepeatDate (int count, Period period) {
-            this.count = count;
-        }
-
         private int count;
 
-        private enum Period {
+        public enum Period {
 
             DAY("DAY"), WEEK("WEEK"), MONTHS("MONTHS"), QUARTER("QUARTER"), YEAR("YEAR");
             private String day;
 
-            Period (String day) {
+            Period(String day) {
                 this.day = day;
             }
 
-            public String getDay () {
+            public String getDay() {
                 return day;
             }
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
+
+        public RepeatDate(int count, Period period) {
+            this.count = count;
         }
     }
 }
