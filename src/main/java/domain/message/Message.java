@@ -1,6 +1,6 @@
 package domain.message;
 
-import domain.Member;
+import domain.member.Member;
 
 import javax.persistence.*;
 import java.time.Instant;

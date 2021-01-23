@@ -1,7 +1,9 @@
 package domain.task;
 
-import domain.Member;
-import domain.Project;
+import domain.member.Member;
+import domain.message.Message;
+import domain.project.Project;
+import domain.status.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +14,7 @@ import java.util.Objects;
  * @author Georgiy Minasian
  */
 @Entity
-@Table(name = "Tasks")
+@Table(name = "tasks")
 public class Task {
     public static Logger logger = LogManager.getLogger();
 
@@ -20,39 +22,51 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Title")
+    @Column(name = "title", unique = true, nullable = false, length = 280)
     private String title;
 
-    @Column(name = "IsComplete")
+    @Column(name = "is_complete", nullable = false)
     private boolean isComplete = false;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CreatorId")
+    @JoinColumn(name = "creatorId", nullable = false)
     private Member creator;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "StatusId")
+    @JoinColumn(name = "statusId", nullable = false)
     private Status status;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ExecutorId")
+    @JoinColumn(name = "executorId", nullable = false)
     private Member executor; //no executor in database
 
-    //todo: Event event, Member followers, Message messages fields
-    @Column(name = "Description")
+    @Column(name = "description", nullable = false)
     private String description = "";
 
-    @Column(name = "Priority")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priority", nullable = false)
     private Priority priority = Priority.NORMAL; //no priority in database
+
+    @Column(name = "project", unique = true, nullable = false, length = 20)
+    private Project project;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @Column(name = "followers", unique = true, nullable = false, length = 20)
+    private Member[] followers;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @Column(name = "messages", unique = true, nullable = false, length = 20)
+    private Message[] messages;
 
     public Task() {
         logger.info("task created by default constructor");
     }
 
-    public Task(String title, String description, Priority priority) {
+    public Task(String title, String description, Priority priority, Project project) {
         this.title = title;
         this.description = description;
         this.priority = priority;
+        this.project = project;
         logger.info("task created by parametrized constructor with: \n"
                 + "title: " + title + "\n"
                 + "description: " + description + "\n"
@@ -60,15 +74,6 @@ public class Task {
                 + "status: " + status.getTitle()
                 );
     }
-
-    public static Task addTask(String jsonString) {
-        JSONSpacer js = new JSONSpacer();
-        Task task = js.getTaskFromJSONString(jsonString);
-        logger.info("Input task created from JSON string");
-        return task;
-    }
-
-    //todo: task delete methods
 
     public String getTitle() {
         return title;
@@ -120,6 +125,30 @@ public class Task {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Member[] getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Member[] followers) {
+        this.followers = followers;
+    }
+
+    public Message[] getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Message[] messages) {
+        this.messages = messages;
     }
 
     //todo: followers, event and messages setters and getters

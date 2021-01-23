@@ -1,5 +1,6 @@
-package domain;
+package domain.member;
 
+import domain.team.Team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

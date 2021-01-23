@@ -1,7 +1,7 @@
-package Event;
+package domain.event;
 
+import domain.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.jetbrains.annotations.NotNull;
 

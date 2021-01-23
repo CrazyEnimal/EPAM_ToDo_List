@@ -1,6 +1,6 @@
-package domain.task;
+package domain.status;
 
-import domain.Project;
+import domain.project.Project;
 
 import javax.persistence.*;
 
@@ -8,18 +8,17 @@ import javax.persistence.*;
  * @author Georgiy Minasian
  */
 @Entity
-@Table(name = "Statuses")
+@Table(name = "statuses")
 public class Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(name = "Title")
+    @Column(name = "title")
     String title;
 
-    @OneToOne
-    @JoinColumn(name = "ProjectId")
+    @JoinColumn(name = "project_id")
     Project project;
 
     public Status() {

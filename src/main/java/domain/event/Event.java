@@ -1,10 +1,9 @@
-package Event;
+package domain.event;
 
 
 import javax.persistence.*;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -39,7 +38,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "domain.Event{" +
                 "id=" + id +
                 ", Date=" + date +
                 ", type='" + type + '\'' +

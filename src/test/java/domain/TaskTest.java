@@ -2,6 +2,8 @@ package domain;
 
 import static org.junit.Assert.assertSame;
 
+import domain.project.Project;
+import domain.task.Task;
 import org.junit.Test;
 
 public class TaskTest {

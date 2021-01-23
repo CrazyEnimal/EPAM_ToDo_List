@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 
+import domain.member.Member;
+import domain.team.Team;
 import org.junit.Test;
 
 public class MemberTest {
