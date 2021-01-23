@@ -10,9 +10,5 @@ public class Main {
     public static void main(String[] args) {
         logger.info("Main method started in class Main");
         System.out.println("Hello World");
-        Status backlog = new Status();
-        Status open = new Status();
-        Status inProgress = new Status();
-        Status done = new Status();
     }
 }
