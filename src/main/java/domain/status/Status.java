@@ -18,6 +18,7 @@ public class Status {
     @Column(name = "title")
     String title;
 
+    @OneToOne
     @JoinColumn(name = "project_id")
     Project project;
 

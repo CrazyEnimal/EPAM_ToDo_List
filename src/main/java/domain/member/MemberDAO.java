@@ -1,4 +1,4 @@
-package domain.status;
+package domain.member;
 
 import domain.DAO;
 import domain.HibernateSessionFactoryUtil;
@@ -6,40 +6,40 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jetbrains.annotations.NotNull;
 
-public class StatusDAO implements DAO<Status, Integer> {
+public class MemberDAO implements DAO<Member, Integer> {
 
-    public StatusDAO() {
+    public MemberDAO() {
 
     }
 
     @Override
-    public void create(@NotNull final Status status) {
+    public void create(@NotNull final Member member) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.save(status);
+        session.save(member);
         tx.commit();
         session.close();
     }
 
     @Override
-    public Status read(@NotNull final Integer id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Status.class, id);
+    public Member read(@NotNull final Integer id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Member.class, id);
     }
 
     @Override
-    public void update(@NotNull final Status status) {
+    public void update(@NotNull final Member member) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.update(status);
+        session.update(member);
         tx.commit();
         session.close();
     }
 
     @Override
-    public void delete(@NotNull final Status status) {
+    public void delete(@NotNull final Member member) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.delete(status);
+        session.delete(member);
         tx.commit();
         session.close();
     }

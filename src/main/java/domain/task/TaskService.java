@@ -1,5 +1,7 @@
 package domain.task;
 
+import domain.DAO;
+
 public class TaskService {
         private DAO<Task, Integer> taskDAO = new TaskDAO();
 

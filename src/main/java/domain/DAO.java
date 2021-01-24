@@ -1,4 +1,4 @@
-package domain.task;
+package domain;
 
 public interface DAO<Entity, Key> {
 

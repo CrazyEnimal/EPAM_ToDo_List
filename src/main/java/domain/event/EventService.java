@@ -1,5 +1,7 @@
 package domain.event;
 
+import domain.DAO;
+
 public class EventService {
     private DAO<Event, Integer> eventDAO = new EventDAO();
 

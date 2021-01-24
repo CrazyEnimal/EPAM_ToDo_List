@@ -29,15 +29,15 @@ public class Task {
     private boolean isComplete = false;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "creatorId", nullable = false)
+    @JoinColumn(name = "creator_id", nullable = false)
     private Member creator;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "statusId", nullable = false)
+    @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "executorId", nullable = false)
+    @JoinColumn(name = "executor_id", nullable = false)
     private Member executor; //no executor in database
 
     @Column(name = "description", nullable = false)
@@ -47,26 +47,28 @@ public class Task {
     @Column(name = "priority", nullable = false)
     private Priority priority = Priority.NORMAL; //no priority in database
 
-    @Column(name = "project", unique = true, nullable = false, length = 20)
+    @OneToOne
+    @JoinColumn(name = "project_id", unique = true, nullable = false)
     private Project project;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "followers", unique = true, nullable = false, length = 20)
-    private Member[] followers;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "messages", unique = true, nullable = false, length = 20)
-    private Message[] messages;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @Column(name = "followers", unique = true, nullable = false, length = 20)
+//    private Member[] followers;
+//
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @Column(name = "messages", unique = true, nullable = false, length = 20)
+//    private Message[] messages;
 
     public Task() {
         logger.info("task created by default constructor");
     }
 
-    public Task(String title, String description, Priority priority, Project project) {
+    public Task(String title, String description, Priority priority, Project project, Member creator) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.project = project;
+        this.creator = creator;
         logger.info("task created by parametrized constructor with: \n"
                 + "title: " + title + "\n"
                 + "description: " + description + "\n"
@@ -135,23 +137,21 @@ public class Task {
         this.project = project;
     }
 
-    public Member[] getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(Member[] followers) {
-        this.followers = followers;
-    }
-
-    public Message[] getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Message[] messages) {
-        this.messages = messages;
-    }
-
-    //todo: followers, event and messages setters and getters
+//    public Member[] getFollowers() {
+//        return followers;
+//    }
+//
+//    public void setFollowers(Member[] followers) {
+//        this.followers = followers;
+//    }
+//
+//    public Message[] getMessages() {
+//        return messages;
+//    }
+//
+//    public void setMessages(Message[] messages) {
+//        this.messages = messages;
+//    }
 
     public Priority getPriority() {
         return priority;

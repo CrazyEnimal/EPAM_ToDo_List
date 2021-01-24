@@ -1,5 +1,6 @@
 package domain.task;
 
+import domain.DAO;
 import domain.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,7 +16,7 @@ public class TaskDAO implements DAO<Task, Integer> {
     public void create(@NotNull final Task task) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.saveOrUpdate(task);
+        session.save(task);
         tx1.commit();
         session.close();
     }

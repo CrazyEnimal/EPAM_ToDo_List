@@ -1,5 +1,7 @@
 package domain.status;
 
+import domain.DAO;
+
 public class StatusService {
     private final DAO<Status, Integer> statusDAO = new StatusDAO();
 
