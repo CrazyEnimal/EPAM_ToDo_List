@@ -6,9 +6,15 @@ import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 @Entity
 @Table(name = "messages")
 public class Message {
+
+    public static Logger logger = LogManager.getLogger();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +28,7 @@ public class Message {
     private Member messageCreatorMember;
 
     @Column(name = "date")
-    private Instant date;
+    private Instant date = Instant.now();
 
     @Column(name = "type")
     private String messageType;
@@ -30,11 +36,18 @@ public class Message {
     @Column(name = "text")
     private String messageText;
 
-    public Message(Member messageCreatorMember, String messageText, String messageType) {
+    public Message(Member messageCreatorMember, String messageText) {
 
         this.messageCreatorMember = messageCreatorMember;
         this.messageText = messageText;
-        this.messageType = messageType;
+
+        logger.info("Message created with:\n" +
+                "id: " + this.messageID +
+                "Creator: " + this.messageCreatorMember.toString() +
+                "Date: " + this.date +
+                "Text: " + messageText);
+
+//        this.messageType = messageType;
     }
     public Message() {
     }
