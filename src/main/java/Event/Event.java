@@ -11,27 +11,18 @@ import java.util.Objects;
 @Table(name = "events")
 public class Event {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    //    EventTypeObject eventTypeObject;
-    @Column(name = "Date")
+    @Column(name = "date")
     private Instant date;
-    @Column(name = "Type")
+    @Column(name = "type")
     private String type;
 
-
-//    public EventTypeObject getEventTypeObject() {
-//        return eventTypeObject;
-//    }
-
-//    public void setEventTypeObject(EventTypeObject eventTypeObject) {
-//        this.eventTypeObject = eventTypeObject;
-//    }
 
     public Event() {
     }
 
-    public Event(int id, Instant date, String type) {
-        this.id = id;
+    public Event(Instant date, String type) {
         this.date = date;
         this.type = type;
     }
@@ -82,7 +73,8 @@ public class Event {
 
     public void setType(String type) {
         this.type = type;
-    }}
+    }
+}
 
 
 
