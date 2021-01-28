@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/employee_directory?useSSL=false&serverTimezone=UTC
+    username: springstudent
+    password: springstudent
+
   security:
     oauth2:
       client:
@@ -9,4 +14,6 @@ spring:
           google:
             client-id: 1042565235073-sghvfi1tvp02fra11fk9j9pcfn531b7r.apps.googleusercontent.com
             client-secret: EKz15VJZYqxGiBR__-Jboim1
+
+
 # ...
