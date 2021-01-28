@@ -12,23 +12,23 @@ public class RoleServices {
     public RoleServices() {
     }
 
-    public Role findRole(int id) {
+    public Role find(int id) {
         return roleDAO.findById(id);
     }
 
-    public void saveRole(Role role){
+    public void save(Role role){
         roleDAO.save(role);
     }
 
-    public void updateRole(Role role){
+    public void update(Role role){
         roleDAO.update(role);
     }
 
-    public void deleteRole(Role role){
+    public void delete(Role role){
         roleDAO.delete(role);
     }
 
-    public List<Role> findAllRoles() {
+    public List<Role> findAll() {
         return roleDAO.findAll();
     }
 }

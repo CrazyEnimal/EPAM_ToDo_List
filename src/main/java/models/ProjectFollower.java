@@ -8,15 +8,13 @@ import java.util.Objects;
 public class ProjectFollower {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id")
+    @ManyToOne
+    @JoinColumn(name = "project_id", unique = true)
     private Project project;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "member_id", unique = true)
     private Member member;
 
     public ProjectFollower() {
@@ -25,10 +23,6 @@ public class ProjectFollower {
     public ProjectFollower(Project project, Member member) {
         this.project = project;
         this.member = member;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Project getProject() {
@@ -52,18 +46,17 @@ public class ProjectFollower {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectFollower that = (ProjectFollower) o;
-        return id == that.id;
+        return Objects.equals(project, that.project) && Objects.equals(member, that.member);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(project, member);
     }
 
     @Override
     public String toString() {
         return "ProjectFollower{" +
-                "id=" + id +
                 ", project=" + project.toString() +
                 ", member=" + member.toString() +
                 '}';

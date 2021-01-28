@@ -9,19 +9,21 @@ import java.util.Objects;
 public class TaskMessage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id")
+    @ManyToOne
+    @JoinColumn(name = "task_id", unique = true)
     private Task task;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "message_id")
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "message_id", unique = true)
     private Message message;
 
-    public int getId() {
-        return id;
+    public TaskMessage() {
+    }
+
+    public TaskMessage(Task task, Message message) {
+        this.task = task;
+        this.message = message;
     }
 
     public Task getTask() {
@@ -40,31 +42,22 @@ public class TaskMessage {
         this.message = message;
     }
 
-    public TaskMessage() {
-    }
-
-    public TaskMessage(Task task, Message message) {
-        this.task = task;
-        this.message = message;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TaskMessage that = (TaskMessage) o;
-        return id == that.id;
+        return Objects.equals(task, that.task) && Objects.equals(message, that.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(task, message);
     }
 
     @Override
     public String toString() {
         return "TaskMessage{" +
-                "id=" + id +
                 ", task=" + task.toString() +
                 ", message=" + message.toString() +
                 '}';

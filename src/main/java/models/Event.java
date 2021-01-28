@@ -1,13 +1,12 @@
 package models;
 
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "messages")
-public class Message {
+@Table(name = "events")
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +19,8 @@ public class Message {
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "text")
-    private String text;
-
     @Column(name = "type")
     private String type;
-
-    public Message() {
-    }
 
     public int getId() {
         return id;
@@ -49,14 +42,6 @@ public class Message {
         this.date = date;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public String getType() {
         return type;
     }
@@ -69,8 +54,8 @@ public class Message {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Message message = (Message) o;
-        return id == message.id;
+        Event event = (Event) o;
+        return id == event.id;
     }
 
     @Override
@@ -80,11 +65,10 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "Event{" +
                 "id=" + id +
-                ", creator=" + creator.toString() +
+                ", creator=" + creator +
                 ", date=" + date +
-                ", text='" + text + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }

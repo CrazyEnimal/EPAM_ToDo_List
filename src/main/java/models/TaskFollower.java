@@ -1,22 +1,21 @@
 package models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tasks_followers")
-public class TaskFollower {
+public class TaskFollower implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id")
+    @ManyToOne
+    @JoinColumn(name = "task_id", unique = true)
     private Task task;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "member_id", unique = true)
     private Member member;
 
     public TaskFollower() {
@@ -27,9 +26,9 @@ public class TaskFollower {
         this.member = member;
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
     public Task getTask() {
         return task;
@@ -52,20 +51,11 @@ public class TaskFollower {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TaskFollower that = (TaskFollower) o;
-        return id == that.id;
+        return Objects.equals(task, that.task) && Objects.equals(member, that.member);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "TaskFollower{" +
-                "id=" + id +
-                ", task=" + task.toString() +
-                ", member=" + member.toString() +
-                '}';
+        return Objects.hash(task, member);
     }
 }

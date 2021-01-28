@@ -25,7 +25,7 @@ public class Member {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role")
     private Role role;
 
@@ -117,7 +117,7 @@ public class Member {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + role.toString() + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

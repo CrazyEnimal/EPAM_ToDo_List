@@ -10,14 +10,21 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "creator_id")
+    @ManyToOne
+    @JoinColumn(name="creator_id")
     private Member creator;
 
     @Column(name = "title")
     private String title;
 
+    @Column(name = "this_complete")
+    private boolean thisComplete;
+
     public Status() {
+    }
+
+    public Status(String title) {
+        this.title = title;
     }
 
     public int getId() {
@@ -30,6 +37,14 @@ public class Status {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Member getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Member creator) {
+        this.creator = creator;
     }
 
     @Override
@@ -49,7 +64,7 @@ public class Status {
     public String toString() {
         return "Status{" +
                 "id=" + id +
-                ", creator=" + creator.toString() +
+                ", creator=" + creator +
                 ", title='" + title + '\'' +
                 '}';
     }

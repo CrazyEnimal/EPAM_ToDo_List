@@ -11,22 +11,28 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "creator_id")
+    @ManyToOne
+    @JoinColumn(name="creator_id")
     private Member creator;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "supervisor_id")
     private Member supervisor;
 
-    @Column(name = "Title")
+    @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProjectFollower> projectFollowers;
+    @OneToMany
+    @JoinTable(name="projects_followers",
+            joinColumns = @JoinColumn(name="project_id"),
+            inverseJoinColumns = @JoinColumn(name="member_id", unique=true))
+    private List<Member> projectFollowers;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProjectTask> projectTasks;
+    @OneToMany
+    @JoinTable(name="projects_tasks",
+            joinColumns = @JoinColumn(name="project_id"),
+            inverseJoinColumns = @JoinColumn(name="task_id", unique=true))
+    private List<Task> projectTasks;
 
     public Project(){}
 
@@ -61,6 +67,22 @@ public class Project {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Member> getFolowers() {
+        return projectFollowers;
+    }
+
+    public List<Task> getTasks() {
+        return projectTasks;
+    }
+
+    public void addFolower(Member member) {
+        projectFollowers.add(member);
+    }
+
+    public void addTasks(Task task) {
+        projectTasks.add(task);
     }
 
     @Override

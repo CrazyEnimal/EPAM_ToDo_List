@@ -9,35 +9,40 @@ import java.util.List;
 
 public class TaskDAO {
     public Task findById(int id){
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Task.class, id);
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Task task = session.get(Task.class, id);
+
+        return task;
     }
 
     public void save(Task task) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
+        session.beginTransaction();
         session.save(task);
-        tx1.commit();
+        session.getTransaction().commit();
         session.close();
     }
 
     public void update(Task task) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
+        session.beginTransaction();
         session.update(task);
-        tx1.commit();
+        session.getTransaction().commit();
         session.close();
     }
 
     public void delete(Task task) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
+        session.beginTransaction();
         session.delete(task);
-        tx1.commit();
+        session.getTransaction().commit();
         session.close();
     }
 
     public List<Task> findAll() {
-        List<Task> tasks = (List<Task>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Task").list();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        List<Task> tasks = (List<Task>) session.createQuery("From Task").list();
+
         return tasks;
     }
 }

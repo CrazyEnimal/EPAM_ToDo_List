@@ -29,8 +29,6 @@ public class HibernateSessionFactoryUtil {
                 configuration.addAnnotatedClass(Message.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
-
-//                sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
             } catch (Exception e) {
                 System.out.println("Исключение! " + e);
             }

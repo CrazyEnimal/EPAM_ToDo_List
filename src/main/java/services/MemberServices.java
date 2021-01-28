@@ -12,23 +12,23 @@ public class MemberServices {
     public MemberServices() {
     }
 
-    public Member findMember(int id) {
+    public Member find(int id) {
         return memberDao.findById(id);
     }
 
-    public void saveMember(Member member){
+    public void save(Member member){
         memberDao.save(member);
     }
 
-    public void updateMember(Member member){
+    public void update(Member member){
         memberDao.update(member);
     }
 
-    public void deleteMember(Member member){
+    public void delete(Member member){
         memberDao.delete(member);
     }
 
-    public List<Member> findAllMembers() {
+    public List<Member> findAll() {
         return memberDao.findAll();
     }
 }

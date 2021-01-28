@@ -6,15 +6,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "teams_followers")
 public class TeamFollower {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Id
+    @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @Id
+    @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -24,10 +23,6 @@ public class TeamFollower {
     public TeamFollower(Team team, Member member) {
         this.team = team;
         this.member = member;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Team getTeam() {
@@ -51,18 +46,17 @@ public class TeamFollower {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeamFollower that = (TeamFollower) o;
-        return id == that.id;
+        return Objects.equals(team, that.team) && Objects.equals(member, that.member);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(team, member);
     }
 
     @Override
     public String toString() {
         return "TeamFollower{" +
-                "id=" + id +
                 ", team=" + team.toString() +
                 ", member=" + member.toString() +
                 '}';

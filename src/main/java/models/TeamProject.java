@@ -9,14 +9,12 @@ import java.util.Objects;
 public class TeamProject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @Id
+    @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
 
@@ -26,10 +24,6 @@ public class TeamProject {
     public TeamProject(Team team, Project project) {
         this.team = team;
         this.project = project;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Team getTeam() {
@@ -53,18 +47,17 @@ public class TeamProject {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeamProject that = (TeamProject) o;
-        return id == that.id;
+        return Objects.equals(team, that.team) && Objects.equals(project, that.project);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(team, project);
     }
 
     @Override
     public String toString() {
         return "TeamProject{" +
-                "id=" + id +
                 ", team=" + team.toString() +
                 ", project=" + project.toString() +
                 '}';

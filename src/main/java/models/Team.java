@@ -23,11 +23,17 @@ public class Team {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TeamFollower> teamFollowers;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="teams_followers",
+            joinColumns = @JoinColumn(name="team_id"),
+            inverseJoinColumns = @JoinColumn(name="member_id"))
+    private List<Member> teamFollowers;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TeamProject> teamProjects;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="teams_projects",
+            joinColumns = @JoinColumn(name="team_id"),
+            inverseJoinColumns = @JoinColumn(name="project_id"))
+    private List<Project> teamProjects;
 
     public Team() {
     }
@@ -77,11 +83,11 @@ public class Team {
     public String toString() {
         return "Team{" +
                 "id=" + id +
-                ", creator=" + creator.toString() +
-                ", supervisor=" + supervisor.toString() +
+                ", creator=" + creator +
+                ", supervisor=" + supervisor +
                 ", title='" + title + '\'' +
-                ", teamFollowers=" + teamFollowers.toString() +
-                ", teamProjects=" + teamProjects.toString() +
+                ", teamFollowers=" + teamFollowers +
+                ", teamProjects=" + teamProjects +
                 '}';
     }
 }

@@ -6,16 +6,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "projects_tasks")
 public class ProjectTask {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
+    @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id")
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id", unique = true)
     private Task task;
 
     public ProjectTask() {
@@ -25,10 +24,6 @@ public class ProjectTask {
     public ProjectTask(Project project, Task task) {
         this.project = project;
         this.task = task;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Project getProject() {
@@ -52,18 +47,17 @@ public class ProjectTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectTask that = (ProjectTask) o;
-        return id == that.id;
+        return Objects.equals(project, that.project) && Objects.equals(task, that.task);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(project, task);
     }
 
     @Override
     public String toString() {
         return "ProjectTask{" +
-                "id=" + id +
                 ", project=" + project.toString() +
                 ", task=" + task.toString() +
                 '}';
