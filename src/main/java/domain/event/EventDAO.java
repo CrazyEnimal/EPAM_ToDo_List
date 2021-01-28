@@ -1,11 +1,12 @@
-package Event;
+package domain.event;
 
+import domain.DAO;
+import domain.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.jetbrains.annotations.NotNull;
 
-public class EventDAO implements DAO<Event, Integer>{
+public class EventDAO implements DAO<Event, Integer> {
 
     /**
      * Connection factory to database.
@@ -25,7 +26,7 @@ public class EventDAO implements DAO<Event, Integer>{
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
 //        session.save(event);
-        session.saveOrUpdate(event);
+        session.save(event);
         tx1.commit();
         session.close();
     }

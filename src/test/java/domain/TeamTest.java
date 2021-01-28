@@ -6,6 +6,9 @@ import static org.junit.Assert.assertSame;
 
 import java.util.HashSet;
 
+import domain.member.Member;
+import domain.project.Project;
+import domain.team.Team;
 import org.junit.Test;
 
 public class TeamTest {

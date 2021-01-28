@@ -1,6 +1,6 @@
-package Event;
+package domain.event;
 
-import java.time.Instant;
+import domain.DAO;
 
 public class EventService {
     private DAO<Event, Integer> eventDAO = new EventDAO();

@@ -1,7 +1,9 @@
-package domain;
+package domain.team;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import domain.member.Member;
+import domain.project.Project;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "member")
 public class Team implements Serializable {
-    private static final Logger LOG = LoggerFactory.getLogger(Team.class);
+    private static final Logger logger = LogManager.getLogger();
 
 
     @Id
