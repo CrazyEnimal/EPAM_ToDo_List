@@ -38,6 +38,11 @@ public class Up extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    @GetMapping("/user")
+    public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
+        return Collections.singletonMap("name", principal.getAttribute("name"));
+    }
+
     //beans
     //bcrypt bean definition
     @Bean
@@ -54,17 +59,15 @@ public class Up extends WebSecurityConfigurerAdapter {
         return auth;
     }
 
-    @GetMapping("/user")
-    public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-        return Collections.singletonMap("name", principal.getAttribute("name"));
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
                 .authorizeRequests(a -> a
                         .antMatchers("/", "/error", "/webjars/**").permitAll()
+                        .antMatchers("/").hasRole("USER")
+                        .antMatchers("/guests/**").hasRole("GUEST")
+                        .antMatchers("/systems/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .logout(l -> l
@@ -88,18 +91,7 @@ public class Up extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
 
-
-                /*
-                .antMatchers("/").hasRole("EMPLOYEE")
-                .antMatchers("/leaders/**").hasRole("MANAGER")
-                .antMatchers("/systems/**").hasRole("ADMIN")
-                */
-
-
-
     }
-
-
 
     public static void main(String[] args) {
         SpringApplication.run(Up.class, args);
