@@ -6,9 +6,9 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://194.177.22.136:3306/DEV__etd?serverTimezone=UTC</property>
-        <property name="hibernate.connection.username">DEV__etd</property>
-        <property name="hibernate.connection.password">Rdeb6JJw11</property>
+        <property name="hibernate.connection.url">jdbc:mysql://194.177.22.198:3306/MY_TODO_LIST?serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">MY_TODO_LIST</property>
+        <property name="hibernate.connection.password">MY_TODO_LIST$</property>
         <property name="hibernate.connection.pool_size">1</property>
         <property name="show_sql">true</property>
         <property name="format_sql">false</property>
