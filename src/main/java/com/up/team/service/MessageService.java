@@ -1,30 +1,14 @@
 package com.up.team.service;
 
-
-import com.up.team.dao.DAO;
-import com.up.team.dao.MessageDao;
 import com.up.team.entity.Message;
 
-public class MessageService {
-    private final DAO<Message, Integer> messageDAO = new MessageDao();
+public interface MessageService {
 
-    public MessageService() {
+    void create(Message message);
 
-    }
+    void update(Message message);
 
-    public void create(Message message) {
-        messageDAO.create(message);
-    }
+    void delete(Message message);
 
-    public void update(Message message) {
-        messageDAO.update(message);
-    }
-
-    public void delete(Message message) {
-        messageDAO.delete(message);
-    }
-
-    public final Message read(int id) {
-        return messageDAO.read(id);
-    }
+    Message read(int id);
 }

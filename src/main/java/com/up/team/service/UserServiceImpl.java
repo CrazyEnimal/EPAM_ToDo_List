@@ -19,9 +19,8 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements com.up.team.service.UserService {
+public class UserServiceImpl implements UserService {
 
-    // need to inject user dao
     @Autowired
     private UserDao userDao;
 
@@ -34,7 +33,7 @@ public class UserServiceImpl implements com.up.team.service.UserService {
     @Override
     @Transactional
     public User findByUserName(String userName) {
-        // check the database if the user already exists
+
         return userDao.findByUserName(userName);
     }
 
@@ -42,17 +41,14 @@ public class UserServiceImpl implements com.up.team.service.UserService {
     @Transactional
     public void save(CrmUser crmUser) {
         User user = new User();
-        // assign user details to the user object
+
         user.setUserName(crmUser.getUserName());
         user.setPassword(passwordEncoder.encode(crmUser.getPassword()));
         user.setFirstName(crmUser.getFirstName());
         user.setLastName(crmUser.getLastName());
         user.setEmail(crmUser.getEmail());
-
-        // give user default role of "employee"
         user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_EMPLOYEE")));
 
-        // save user in the database
         userDao.save(user);
     }
 

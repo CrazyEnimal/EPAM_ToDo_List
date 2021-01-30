@@ -1,47 +1,48 @@
 package com.up.team.dao;
 
 import com.up.team.HibernateSessionFactoryUtil;
-import com.up.team.entity.Task;
+import com.up.team.entity.Message;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
 
+@Repository
+public class MessageDaoImpl implements DAO<Message, Integer> {
 
-public class TaskDao implements DAO<Task, Integer> {
-
-    public TaskDao() {
+    public MessageDaoImpl() {
 
     }
 
     @Override
-    public void create(@NotNull final Task task) {
+    public void create(@NotNull final Message message) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(task);
+        session.save(message);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public Task read(@NotNull final Integer id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Task.class, id);
+    public Message read(@NotNull final Integer id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Message.class, id);
     }
 
     @Override
-    public void update(@NotNull final Task task) {
+    public void update(@NotNull final Message message) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(task);
+        session.update(message);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void delete(@NotNull final Task task) {
+    public void delete(@NotNull final Message message) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(task);
+        session.delete(message);
         tx1.commit();
         session.close();
     }

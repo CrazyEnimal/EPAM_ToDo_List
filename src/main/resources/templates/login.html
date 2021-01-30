@@ -64,6 +64,14 @@
                         <div class="col-sm-6 controls">
                             <button type="submit" class="btn btn-success">Login</button>
                         </div>
+                        <div class="container unauthenticated">
+                            <div>
+                                With GitHub: <a href="/oauth2/authorization/github">click here</a>
+                            </div>
+                            <div>
+                                With Google: <a href="/oauth2/authorization/google">click here</a>
+                            </div>
+                        </div>
                     </div>
 
                 </form>
@@ -75,6 +83,7 @@
         <div>
             <a th:href="@{/register/showRegistrationForm}" class="btn btn-primary" role="button" aria-pressed="true">Register New User</a>
         </div>
+
 
     </div>
 

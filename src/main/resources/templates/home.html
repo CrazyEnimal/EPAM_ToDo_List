@@ -14,7 +14,7 @@
 	</p>
 
 	<hr>
-	
+
 	<!-- display user name and role -->
 	
 	<div>
@@ -23,16 +23,16 @@
 		Role(s): <span sec:authentication="principal.authorities"></span>
 		<br><br>
 
-		<!-- Check for login error -->																	
+		<!-- Check for login error -->
 		<div th:if="${session.user}" >
 			<p th:text="'First name: ' + ${session.user.firstName} + ', Last name: ' + ${session.user.lastName} + ', Email: ' + ${session.user.email}"></p>
 		</div>		
 	</div>
-	
+
 	<div sec:authorize="hasRole('ROLE_GUEST')">
-	
-		<!-- Add a link to point to /leaders ... this is for the guests -->
-		
+
+		<!-- This is for the guests -->
+
 		<p>
 			<a th:href="@{/guests}">GUESTS</a>
 		</p>
@@ -50,7 +50,7 @@
 	</div>
 
 	<hr>
-	
+
 	<!-- Add a logout button -->
 	<form th:action="@{/logout}" 
 			   method="POST">

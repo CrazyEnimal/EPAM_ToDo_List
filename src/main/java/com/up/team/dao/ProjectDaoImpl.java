@@ -4,13 +4,14 @@ import com.up.team.HibernateSessionFactoryUtil;
 import com.up.team.entity.Project;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
 
+@Repository
+public class ProjectDaoImpl implements DAO<Project, Integer> {
 
-public class ProjectDao implements DAO<Project, Integer> {
-
-    public ProjectDao() {
+    public ProjectDaoImpl() {
 
     }
 

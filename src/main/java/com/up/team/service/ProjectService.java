@@ -1,30 +1,14 @@
 package com.up.team.service;
 
-
-import com.up.team.dao.DAO;
-import com.up.team.dao.ProjectDao;
 import com.up.team.entity.Project;
 
-public class ProjectService {
-    private final DAO<Project, Integer> projectDAO = new ProjectDao();
+public interface ProjectService {
 
-    public ProjectService() {
+    void create(Project project);
 
-    }
+    void update(Project project);
 
-    public void create(Project project) {
-        projectDAO.create(project);
-    }
+    void delete(Project project);
 
-    public void update(Project project) {
-        projectDAO.update(project);
-    }
-
-    public void delete(Project project) {
-        projectDAO.delete(project);
-    }
-
-    public final Project read(int id) {
-        return projectDAO.read(id);
-    }
+    Project read(int id);
 }
