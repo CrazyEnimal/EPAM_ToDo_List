@@ -89,8 +89,9 @@ public class Up extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/access-denied");
-
+                .exceptionHandling().accessDeniedPage("/showMyLoginPage");
+                http.sessionManagement().invalidSessionUrl("/showMyLoginPage");
+;
     }
 
     public static void main(String[] args) {
