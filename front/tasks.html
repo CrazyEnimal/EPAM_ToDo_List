@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Up project manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Project name</a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addtask">Add task</button>
+        <button type="button" class="btn btn-outline-primary">Backlog</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#members">Members</button>
+    </div>
+</nav>
+<div class="container">
+    <div class="row"><h1></h1></div>
+</div>
+
+<div class="container-fluid">
+    <!-- task block -->
+
+    <div class="card">
+        <a data-toggle="modal" data-target="#taskcard" class="clickable-card">
+        <div class="card-header">Task header goes here from POJO title field</div>
+        <div class="card-body">
+            <strong>Description:</strong> you need description to make tasks clear to executor and team<br>
+
+        </div>
+        </a>
+        <div class="card-footer d-flex">
+            <h5 class="card-footer-text task-card-executor"><a href="userid1.html">Fedor Shpilman</a></h5>
+            <h5 class="card-footer-text task-card-duedate">16.02.2021</h5>
+        </div>
+
+    </div>
+
+    <div class="add-task-block d-flex justify-content-center">
+        <form>
+            <div class="form-group row d-flex justify-content-between">
+                <label for="input-task-title" class="col-sm-10 col-form-label"></label>
+                <div class="col-10 input-task-field">
+                    <input type="text" class="form-control" id="input-task-title" placeholder="Add task...">
+                </div>
+                <div class="col-2 input-task-field-btn">
+                    <button type="submit" class="btn btn-primary">+</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<!-- list of members -->
+<div class="modal" id="members">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Members</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <h5 class="member-name">Fedor Shpilman</h5>
+                        <h6 class="occupy">developer</h6>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <h5 class="member-name">Alexandr Pushkin</h5>
+                        <h6 class="occupy">developer</h6>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <h5 class="member-name">Nikolay Gogol</h5>
+                        <h6 class="occupy">QA</h6>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <h5 class="member-name">Vincent Van Gogh</h5>
+                        <h6 class="occupy">designer</h6>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-target="#">Add member</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- we need to get added tasks here to edit -->
+<div class="modal" id="edittask">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form class="add-task-form">
+                <div class="form-group">
+                    <label for="title">Task</label>
+                    <input type="text" class="form-control" id="edit-task-title">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" rows="5" id="edit-task-description"></textarea>
+                </div>
+
+                <div class="form-group">
+                <select name="executor" class="custom-select">
+                    <option selected>Assign task to...</option>
+                    <option value="userid1">
+                        <h5 class="member-name">Fedor Shpilman</h5>
+                        <h6 class="occupy">developer</h6></option>
+                    <option value="userid2">
+                        <h5 class="member-name">Alexandr Pushkin</h5>
+                        <h6 class="occupy">developer</h6></option>
+                    <option value="userid3">
+                        <h5 class="member-name">Nikolay Gogol</h5>
+                        <h6 class="occupy">QA</h6></option>
+                    <option value="userid3">
+                        <h5 class="member-name">Vincent Van Gogh</h5>
+                        <h6 class="occupy">designer</h6></option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="duedate" class="col-2 col-form-label">Date</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" value="today" id="edit-task-duedate"/>
+                    </div>
+                </div>
+
+                <!-- It's custom statuses, not dates, using dates as example -->
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="edit-task-status">
+                        <option value="" selected disabled>Set status</option>
+                        <option>ASAP</option>
+                        <option>Overdue</option>
+                        <option>Today</option>
+                        <option>This week</option>
+                        <option>This month</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select class="form-control" id="edit-task-priority">
+                        <option value="" selected disabled>Set priority</option>
+                        <option>Critical</option>
+                        <option>High</option>
+                        <option>Normal</option>
+                        <option>Low</option>
+                        <option>Backlog</option>
+                    </select>
+                </div>
+
+                <form class="d-none">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="edit-task-completed" name="invisible-checkbox">
+                        <label class="custom-control-label" for="completed">task completed</label>
+                    </div>
+                </form>
+            </form>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-target="#">Edit task</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- add task -->
+<div class="modal" id="addtask">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form class="add-task-form">
+                <div class="form-group">
+                    <label for="title">Task</label>
+                    <input type="text" class="form-control" id="title">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" rows="5" id="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <select name="executor" class="custom-select">
+                        <option selected>Assign task to...</option>
+                        <option value="userid1">
+                            <h5 class="member-name">Fedor Shpilman</h5>
+                            <h6 class="occupy">developer</h6></option>
+                        <option value="userid2">
+                            <h5 class="member-name">Alexandr Pushkin</h5>
+                            <h6 class="occupy">developer</h6></option>
+                        <option value="userid3">
+                            <h5 class="member-name">Nikolay Gogol</h5>
+                            <h6 class="occupy">QA</h6></option>
+                        <option value="userid3">
+                            <h5 class="member-name">Vincent Van Gogh</h5>
+                            <h6 class="occupy">designer</h6></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="duedate" class="col-2 col-form-label">Date</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" value="today" id="duedate"/>
+                    </div>
+                </div>
+
+                <!-- It's custom statuses, not dates, using dates as example -->
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="status">
+                        <option value="" selected disabled>Set status</option>
+                        <option>ASAP</option>
+                        <option>Overdue</option>
+                        <option>Today</option>
+                        <option>This week</option>
+                        <option>This month</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select class="form-control" id="priority">
+                        <option value="" selected disabled>Set priority</option>
+                        <option>Critical</option>
+                        <option>High</option>
+                        <option>Normal</option>
+                        <option>Low</option>
+                        <option>Backlog</option>
+                    </select>
+                </div>
+
+                <form class="d-none">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="completed" name="invisible-checkbox">
+                        <label class="custom-control-label" for="completed">task completed</label>
+                    </div>
+                </form>
+            </form>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-target="#" >Add task</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- card of task for readonly purposes and completing task -->
+<div class="modal" id="taskcard">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Task title</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="task-card-modal-body">
+                <strong>Description</strong><br>
+                <strong>Executor</strong><br>
+                <strong>Due date</strong><br>
+                <form>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="task-completed" name="visible-checkbox">
+                        <label class="custom-control-label" for="task-completed">task completed</label>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#edittask" data-dismiss="modal">Edit task</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

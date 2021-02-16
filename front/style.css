@@ -170,7 +170,7 @@ button:hover {
 .left-block {
     display: flex;
     flex-flow: column;
-    align-items: flex-start;
+    /*align-items: flex-start;*/
     position: fixed;
     width: 15%;
     height: 100%;
@@ -196,8 +196,16 @@ button:hover {
     width: 100%;
 }
 
-#burger:checked ~ #menu {
-    transform: none;
+#dont-hesitate {
+    align-self: center;
+    position: absolute;
+    height: 5%;
+    bottom: 5%;
+
+}
+
+#dont-hesitate a {
+    color: black;
 }
 
 .left-menu-sublist {
@@ -229,14 +237,12 @@ button:hover {
 .list-item {
     text-decoration: none;
     margin: 0 0 10px 0;
-    background-color: green;
 }
 
 .list-item-link {
     text-decoration: none;
     font-size: 14px;
     font-weight: lighter;
-    background-color: red;
 }
 
 .list-item-link :hover {
@@ -255,7 +261,6 @@ button:hover {
     font-weight: 100;
     color: #a0a0a0;
     margin: 0 0 15px 0;
-    background-color: pink;
 }
 
 .members-list ~ .left-menu-sublist {
@@ -270,4 +275,163 @@ button:hover {
     transition: transform .2s ease-in-out;
     transform: scaleY(1);
 }
+
+.tasks-block {
+    position: absolute;
+    left: 20%;
+    top: 10%;
+    border-radius: 20px;
+    width: 20%;
+    height: 80%;
+    background-color: #2EE59D;
+}
+
+.task {
+    position: absolute;
+    width: 90%;
+    height: 10%;
+    background-color: #5264AE;
+    border-radius: 10px;
+    left: 5%;
+    top: 5%;
+}
+
+.assigned-member {
+
+}
+
+.add-task {
+    display: flex;
+    align-self: center;
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+    bottom: 0;
+    background-color: aqua;
+}
+
+.task-input input{
+    padding-left: 5%;
+}
+
+.task-input-field {
+    position: absolute;
+    height: 60px;
+    width: 70%;
+    align-self: center;
+    top: 25%;
+    left: 5%;
+    border: none;
+    border-radius: 30px;
+    background-color: red;
+}
+
+#task-description::placeholder {
+    position: absolute;
+    padding-left: 5%;
+    font-size: 16px;
+    letter-spacing: 3px;
+    font-weight: 100;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.task-plus {
+    position: absolute;
+    display: flex;
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    top: 25%;
+    right: 5%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+#accordion {
+    margin-top: 15px;
+}
+
+.member-name {
+    color: #333;
+    font-size: 10pt;
+    font-weight: 100;
+}
+
+.occupy {
+    color: #4e555b;
+    font-size: 8pt;
+    font-weight: 100;
+}
+
+.sidebar-sticky {
+    position: sticky;
+    top: 48px;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.top-menu-dd {
+    text-decoration: none;
+    color: #4e555b;
+    margin: 0;
+    cursor: pointer;
+}
+
+.add-task-form {
+    margin: 5%;
+}
+
+.priority-color {
+    padding: 10px;
+    background-color: #1b1e21;
+}
+
+.clickable-card {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.card-footer-text {
+
+    margin-right: 5%;
+    color: #333;
+    font-size: 10pt;
+    font-weight: 100;
+}
+
+.card-footer {
+    justify-content: space-between;
+}
+
+.task-card-executor a {
+    text-decoration: none;
+    color: #333;
+}
+
+.task-card-executor:hover a {
+    text-decoration: none;
+    color: #a5a5a5;
+}
+
+.clickable-card:hover {
+    text-decoration: none;
+    color: #a5a5a5;
+}
+
+.task-card-modal-body {
+    margin-left: 5%;
+}
+
 
