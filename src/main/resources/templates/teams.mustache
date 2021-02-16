@@ -1,0 +1,23 @@
+{{> header}}
+{{> navbar}}
+<div class="container">
+    <div class="row">
+        <h1>Main Page</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {{#teams}}
+        <div class="col">
+
+            <div>
+                <p>Tema id: {{id}}</p>
+                <p>Tema title: {{title}}</p>
+            </div>
+
+        </div>
+        {{/teams}}
+    </div>
+</div>
+
+{{> footer}}

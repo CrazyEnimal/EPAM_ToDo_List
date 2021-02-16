@@ -1,0 +1,272 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.window {
+    width: 100%;
+    height: 100%;
+    background-color: #c4c4c4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 500;
+    color: #000;
+    background-color: #e8e8e8;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background-color: #2EE59D;
+    color: #fff;
+}
+
+.form-bg {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page {
+    width: 25%;
+    height: 50%;
+}
+
+#reg-page {
+    width: 25%;
+    height: 70%;
+}
+
+.form-bg .inner {
+    height: 70%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-header {
+    margin-bottom: 20%;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 100;
+    align-items: center;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-field {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    width: 98%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.input-field-label {
+    color: #999;
+    font-size: 18px;
+    position: absolute;
+    pointer-events: none;
+    left: 10px;
+    top: 15px;
+    transition: 0.2s ease all;
+}
+
+.input-field:focus ~ .input-field-label,
+.input-field:valid ~ .input-field-label {
+    top: -15px;
+    font-size: 14px;
+    color: #5264AE;
+}
+
+.bar {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.bar:before,
+.bar:after {
+    content: "";
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+.input-field:focus ~ .bar:before,
+.input-field:focus ~ .bar:after {
+    width: 50%;
+}
+
+.auth-buttons {
+    height: 20%;
+    min-height: 36px;
+    max-height: 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-btn {
+    width: 110%;
+    height: 50%;
+    min-height: 36px;
+    max-height: 48px;
+    margin-bottom: 10%;
+    margin-left: -5%;
+}
+
+.register-and-forget-pass-link {
+    display: flex;
+    justify-content: space-between;
+}
+
+.below-form-text {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 100;
+    color: #333;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#wa-window {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.left-block {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    background: #eaeaea;
+    padding-top: 50px;
+}
+
+#project-name {
+    display: flex;
+    font-size: 24px;
+    font-weight: lighter;
+    width: 80%;
+    padding: 0 10%;
+
+}
+
+#left-menu {
+    list-style: none;
+    display: flex;
+    flex-flow: column;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#burger:checked ~ #menu {
+    transform: none;
+}
+
+.left-menu-sublist {
+    display: block;
+    list-style: none;
+    width: 80%;
+    height: auto;
+    padding: 0 10%;
+}
+
+.members-list {
+    display: none;
+}
+
+.left-menu-items {
+    display: block;
+    font-size: 18px;
+    font-weight: 100;
+    cursor: pointer;
+    border-bottom: none;
+    width: 80%;
+    padding: 5% 10%;
+}
+
+.left-menu-items:hover {
+    background-color: #dbdbdb;
+}
+
+.list-item {
+    text-decoration: none;
+    margin: 0 0 10px 0;
+    background-color: green;
+}
+
+.list-item-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: lighter;
+    background-color: red;
+}
+
+.list-item-link :hover {
+    color: #7a7a7a;
+}
+
+.list-item-name {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.occupy {
+    font-size: 12px;
+    font-weight: 100;
+    color: #a0a0a0;
+    margin: 0 0 15px 0;
+    background-color: pink;
+}
+
+.members-list ~ .left-menu-sublist {
+    height: 0;
+    transition: transform .2s ease-in-out;
+    transform: scaleY(0);
+}
+
+.members-list:checked ~ .left-menu-sublist {
+    height: 100%;
+    transform-origin: top;
+    transition: transform .2s ease-in-out;
+    transform: scaleY(1);
+}

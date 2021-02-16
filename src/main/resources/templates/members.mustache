@@ -1,0 +1,24 @@
+{{> header}}
+{{> navbar}}
+<div class="container">
+    <div class="row">
+        <h1>Members</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        {{#members}}
+            <div class="row">
+                <p>
+                    <b>UserID: {{id}}</b>
+                <h3>UserName {{userName}}</h3>
+                <h3>FirstName {{firstName}}</h3>
+                <h3>Role {{role.title}}</h3>
+                <h3>Active {{active}}</h3>
+                </p>
+            </div>
+        {{/members}}
+    </div>
+</div>
+{{> footer}}

@@ -1,0 +1,52 @@
+{{> header}}
+{{> navbar}}
+<div class="container">
+    <div class="row">
+        <h1>Profile</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        {{#profile}}
+            <div class="row">
+                <p>
+                    <h3>UserID    : {{id}}</h3>
+                    <h3>UserName  : {{userName}}</h3>
+                    <h3>FirstName : {{firstName}}</h3>
+                    <h3>LastName  : {{#lastName}}{{lastName}}{{/lastName}}</h3>
+                    <h3>Email     : {{#email}}{{email}}{{/email}}</h3>
+                    <h3>Role      : {{role.title}}</h3>
+                    <h3>Active    : {{active}}</h3>
+                </p>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Change password
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Change password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/api/member/change-password" method="post">
+                                <form class="form-floating">
+                                    <input type="password" class="form-control" id="floatingPassword" placeholder="New Password">
+                                    <label for="floatingPassword">Password</label>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary" value="Save changes"></input>
+                                </form>
+                                {{#_csrf}}<input type="hidden" name="_csrf" value="{{_csrf.token}}">{{/_csrf}}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/profile}}
+    </div>
+</div>
+{{> footer}}

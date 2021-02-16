@@ -1,0 +1,37 @@
+{{> header}}
+{{#message}}
+    {{message}}
+{{/message}}
+<div class="window">
+    <div class="form-bg" id="reg-page">
+        <div class="inner">
+            <h1 class="auth-form-header"><img src="img/logo.svg"></h1>
+            <form action="/registration" method="post">
+                <div class="input-group">
+                    <input id="username" type="text" class="input-field" name="username" required>
+                    <span class="bar"></span>
+                    <label for="username" class="input-field-label">Username</label>
+                </div>
+                <div class="input-group">
+                    <input id="password" type="password" class="input-field" name="password" required>
+                    <span class="bar"></span>
+                    <label for="password" class="input-field-label">Password</label>
+                </div>
+                <div class="input-group">
+                    <input id="e-mail" type="text" class="input-field" name="email" required>
+                    <span class="bar"></span>
+                    <label for="e-mail" class="input-field-label">E-mail</label>
+                </div>
+                {{#_csrf}}<input type="hidden" name="_csrf" value="{{_csrf.token}}">{{/_csrf}}
+                <div class="auth-buttons">
+                    <button class="login-btn" type="submit">Register</button>
+                    <div class="register-and-forget-pass-link">
+                        <a href="/login" class="below-form-text">Back to login page</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{> footer}}
