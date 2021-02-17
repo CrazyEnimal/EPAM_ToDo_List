@@ -1,0 +1,10 @@
+spring.datasource.url=BaseURL
+spring.datasource.username=User
+spring.datasource.password=password
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.generate-ddl=false
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.mustache.expose-request-attributes=true
+spring.mustache.prefix=classpath:/templates/
+spring.mustache.suffix=.mustache

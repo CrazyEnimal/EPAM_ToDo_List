@@ -3,7 +3,7 @@
 <div class="window">
     <div class="form-bg" id="login-page">
         <div class="inner">
-            <h1 class="form-header"><img src="img/logo.svg"></h1>
+            <h1 class="form-header"><img src="../../../../img/logo.svg"></h1>
             <form action="/login" method="post">
                 <div class="input-group">
                     <input id="login" type="text" class="input-field" name="username" required>
@@ -17,7 +17,7 @@
                 </div>
                 {{#_csrf}}<input type="hidden" name="_csrf" value="{{_csrf.token}}">{{/_csrf}}
                 <div class="auth-buttons">
-                    <button class="login-btn" type="submit">Log in</button>
+                    <input class="login-btn" type="submit">Log in</input>
                     <div class="register-and-forget-pass-link">
                         <a href="/registration" class="below-form-text">Register</a>
                         <a href="#" class="below-form-text">Forget password?</a>

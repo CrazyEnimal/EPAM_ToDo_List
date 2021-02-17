@@ -66,6 +66,22 @@ public class Team {
         this.title = title;
     }
 
+    public List<Member> getTeamFollowers() {
+        return teamFollowers;
+    }
+
+    public void setTeamFollowers(List<Member> teamFollowers) {
+        this.teamFollowers = teamFollowers;
+    }
+
+    public List<Project> getTeamProjects() {
+        return teamProjects;
+    }
+
+    public void setTeamProjects(List<Project> teamProjects) {
+        this.teamProjects = teamProjects;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,9 +1,8 @@
 package org.etd.up.controllers;
 
 import org.etd.up.models.Member;
-import org.etd.up.models.Role;
 import org.etd.up.repo.MemberRepository;
-import org.etd.up.services.HelperServices;
+import org.etd.up.helpers.HelperServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +15,7 @@ import java.util.Map;
 @Controller
 public class MembersController {
     @Autowired
-    MemberRepository memberRepository;
+    private MemberRepository memberRepository;
 
     @GetMapping("/members")
     public String getMembers(
@@ -28,15 +27,16 @@ public class MembersController {
         } else {
             if(HelperServices.hasRole(userDetails,"ADMIN"))model.put("isAdmin", true);
             model.put("isLoggedIn", true);
+
+            Member member = memberRepository.findMemberByUserName(userDetails.getUsername());
+            if(member.getRole().getTitle().compareTo("ADMIN") == 0){
+                List<Member> members = this.memberRepository.findAll();
+                model.put("members", members);
+                return "members";
+            }
+            model.put("members", member);
         }
-        Member member = memberRepository.findMemberByUserName(userDetails.getUsername());
-        Role role = member.getRole();
-        if(member.getRole().getTitle().compareTo("ADMIN") == 0){
-            List<Member> members = this.memberRepository.findAll();
-            model.put("members", members);
-            return "members";
-        }
-        model.put("members", member);
+
         return "members";
     }
 
@@ -50,9 +50,10 @@ public class MembersController {
         } else {
             if(HelperServices.hasRole(userDetails,"ADMIN"))model.put("isAdmin", true);
             model.put("isLoggedIn", true);
+            Member member = memberRepository.findMemberByUserName(userDetails.getUsername());
+            model.put("profile", member);
         }
-        Member member = memberRepository.findMemberByUserName(userDetails.getUsername());
-        model.put("profile", member);
+
         return "profile";
     }
 }

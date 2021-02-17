@@ -1,10 +1,10 @@
-package org.etd.up.services;
+package org.etd.up.helpers;
 
-import org.springframework.security.core.Authentication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class HelperServices {
     public static boolean hasRole(UserDetails userDetails, String role) {
@@ -13,5 +13,10 @@ public class HelperServices {
                 return true;
         }
         return false;
+    }
+
+    @Bean
+    public static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(12);
     }
 }

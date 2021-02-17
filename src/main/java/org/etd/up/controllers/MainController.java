@@ -1,15 +1,10 @@
 package org.etd.up.controllers;
 
-import org.etd.up.services.HelperServices;
-import org.springframework.security.core.GrantedAuthority;
+import org.etd.up.helpers.HelperServices;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Collection;
 import java.util.Map;
 
 @Controller

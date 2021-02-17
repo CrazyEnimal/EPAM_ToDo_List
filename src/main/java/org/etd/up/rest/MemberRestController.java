@@ -21,8 +21,10 @@ public class MemberRestController {
     RoleRepository roleRepository;
 
     /**
-     * Get member by ID
+     * @Description Get member by ID
      * @param id
+     * @Description memder_id
+     *
      * @return
      */
     @GetMapping("/{id}")

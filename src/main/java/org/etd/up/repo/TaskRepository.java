@@ -1,6 +1,5 @@
 package org.etd.up.repo;
 
-import org.etd.up.models.Member;
 import org.etd.up.models.Task;
 import org.etd.up.models.TaskFollower;
 import org.springframework.data.jpa.repository.JpaRepository;
