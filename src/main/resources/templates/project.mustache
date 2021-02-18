@@ -1,0 +1,28 @@
+{{> header}}
+{{> navbar}}
+<div class="container">
+    <div class="row">
+        <h1>Projects Page</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div>
+                {{#project}}
+                <h1>{{title}}</h1>
+                {{/project}}
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                {{#tasks}}
+                <h1>{{id}}</h1>
+                <h1>{{title}}</h1>
+                {{/tasks}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer}}
