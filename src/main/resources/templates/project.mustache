@@ -2,7 +2,7 @@
 {{> navbar}}
 <div class="container">
     <div class="row">
-        <h1>Projects Page</h1>
+        <h1>Project Page</h1>
     </div>
 </div>
 <div class="container">
@@ -20,6 +20,14 @@
                 <h1>{{id}}</h1>
                 <h1>{{title}}</h1>
                 {{/tasks}}
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                {{#followers}}
+                <h1>{{id}}</h1>
+                <h1>{{userName}}</h1>
+                {{/followers}}
             </div>
         </div>
     </div>

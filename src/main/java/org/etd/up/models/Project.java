@@ -69,7 +69,7 @@ public class Project {
         this.title = title;
     }
 
-    public List<Member> getFolowers() {
+    public List<Member> getFollowers() {
         return projectFollowers;
     }
 

@@ -39,4 +39,9 @@ public class ProjectRestController {
         this.projectRepository.save(project);
         return "{\"success\":true}";
     }
+    @DeleteMapping("/{id}")
+    String editProject(@PathVariable("id") int id){
+        this.projectRepository.deleteById(id);
+        return "{\"success\":true}";
+    }
 }
